@@ -5,16 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 
 public class DbAdapter {
     myDbHelper myhelper;
-
+    static final String TABLE_NAME = "friends";
     static class myDbHelper extends SQLiteOpenHelper
     {
         static final String DATABASE_NAME = "myDatabase";
         static final String TABLE_NAME = "friends";
-        static final int DATABASE_Version = 2;
+        static final int DATABASE_Version = 3;
         static final String UID="_id";
         static final String EMAIL="email";
         static final String NAME = "name";
@@ -57,36 +58,51 @@ public class DbAdapter {
     {
         SQLiteDatabase dbb = myhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(myhelper.EMAIL, email);
         contentValues.put(myhelper.NAME, name);
         contentValues.put(myhelper.NUMBER, number);
+        contentValues.put(myhelper.EMAIL, email);
         long id = dbb.insert(myhelper.TABLE_NAME, null , contentValues);
         return id;
     }
-    public String getData()
-    {
+
+
+    public Cursor getData(){
         SQLiteDatabase db = myhelper.getWritableDatabase();
-        String[] columns = {myhelper.EMAIL, myhelper.NAME, myhelper.NUMBER};
-        Cursor cursor =db.query(myhelper.TABLE_NAME,columns,null,null,null,null,null);
-        StringBuffer buffer= new StringBuffer();
-        while (cursor.moveToNext())
-        {
-            int cid =cursor.getInt(cursor.getColumnIndex(myhelper.UID));
-            String name =cursor.getString(cursor.getColumnIndex(myhelper.NAME));
-            String email =cursor.getString(cursor.getColumnIndex(myhelper.EMAIL));
-            String number =cursor.getString(cursor.getColumnIndex(myhelper.NUMBER));
-            buffer.append(cid+ "   " + name + "   " + email + "   " + number + " \n");
-        }
-        return buffer.toString();
+        Cursor cs = db.rawQuery("select * from friends", null);
+        return cs;
     }
 
-    public  int delete(String deleteName)
+//    public String getData()
+//    {
+//        SQLiteDatabase db = myhelper.getWritableDatabase();
+//        String[] columns = {myhelper.EMAIL, myhelper.NAME, myhelper.NUMBER};
+//        Cursor cursor =db.query(myhelper.TABLE_NAME,columns,null,null,null,null,null);
+//        StringBuffer buffer= new StringBuffer();
+//        while (cursor.moveToNext())
+//        {
+//            int cid =cursor.getInt(cursor.getColumnIndex(myhelper.UID));
+//            String name =cursor.getString(cursor.getColumnIndex(myhelper.NAME));
+//            String email =cursor.getString(cursor.getColumnIndex(myhelper.EMAIL));
+//            String number =cursor.getString(cursor.getColumnIndex(myhelper.NUMBER));
+//            buffer.append(cid+ "   " + name + "   " + email + "   " + number + " \n");
+//        }
+//        return buffer.toString();
+//    }
+
+    public int delete(String deleteName, Context context)
     {
         SQLiteDatabase db = myhelper.getWritableDatabase();
         String[] whereArgs ={deleteName};
 
         int count =db.delete(myDbHelper.TABLE_NAME , myDbHelper.NAME+" = ?",whereArgs);
         return  count;
+    }
+
+    public void updatePersonRecord(String friendToUpdate, Context context, RetriveParams updated) {
+        SQLiteDatabase db = myhelper.getWritableDatabase();
+        //you can use the constants above instead of typing the column names
+        db.execSQL("UPDATE  "+TABLE_NAME+" SET name ='"+ updated.getName() + "', number ='" + updated.getNumber()+ "', email ='"+ updated.getEmail() + "'  WHERE name='" + friendToUpdate + "'");
+
     }
 
 

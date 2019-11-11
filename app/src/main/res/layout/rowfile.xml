@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="120px"
+    app:cardMaxElevation="200dp"
+    android:layout_margin="20dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+
+        android:drawablePadding="5dp"
+        android:insetTop="500dp"
+        android:singleLine="true"></TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/tv_email"
+        android:gravity="center_horizontal"
+
+        android:drawablePadding="5dp"
+        android:insetTop="500dp"
+        android:singleLine="true">
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:gravity="right"
+        android:drawablePadding="5dp"
+        android:insetTop="500dp"
+        android:singleLine="true">
+
+    </TextView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_delete"
+        android:layout_width="43dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tv_number"
+        android:layout_alignLeft="@+id/tv_number"
+        android:layout_alignEnd="@+id/tv_email"
+        android:layout_alignRight="@+id/tv_email"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="327dp"
+        android:layout_marginLeft="327dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/ic_delete"></androidx.appcompat.widget.AppCompatImageView>
+</RelativeLayout>
+
+</androidx.cardview.widget.CardView>
