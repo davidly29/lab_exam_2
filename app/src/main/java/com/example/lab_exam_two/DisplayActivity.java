@@ -43,6 +43,7 @@ public class DisplayActivity extends AppCompatActivity {
     DbAdapter helper;
 
     Cursor c;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,19 +56,6 @@ public class DisplayActivity extends AppCompatActivity {
         helper = new DbAdapter(this);
         final ExtraAdapter adp = new ExtraAdapter(this, data, recyclerView);
         recyclerView.setAdapter(adp);
-
-        editTextRemove = (EditText) findViewById(R.id.editTextRemove);
-        buttonDeleteUser = (Button) findViewById(R.id.buttonDeleteUser);
-
-        buttonDeleteUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                helper.delete(editTextRemove.getText().toString(), DisplayActivity.this);
-                data.remove(editTextRemove.getText().toString());
-                adp.notifyDataSetChanged();
-                recyclerView.setAdapter(adp);
-            }
-        });
 
         c=helper.getData();
 
@@ -82,8 +70,5 @@ public class DisplayActivity extends AppCompatActivity {
             }
     }
 
-    public void remove(int position){
-
-    }
 }
 
