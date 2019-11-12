@@ -72,22 +72,6 @@ public class DbAdapter {
         return cs;
     }
 
-//    public String getData()
-//    {
-//        SQLiteDatabase db = myhelper.getWritableDatabase();
-//        String[] columns = {myhelper.EMAIL, myhelper.NAME, myhelper.NUMBER};
-//        Cursor cursor =db.query(myhelper.TABLE_NAME,columns,null,null,null,null,null);
-//        StringBuffer buffer= new StringBuffer();
-//        while (cursor.moveToNext())
-//        {
-//            int cid =cursor.getInt(cursor.getColumnIndex(myhelper.UID));
-//            String name =cursor.getString(cursor.getColumnIndex(myhelper.NAME));
-//            String email =cursor.getString(cursor.getColumnIndex(myhelper.EMAIL));
-//            String number =cursor.getString(cursor.getColumnIndex(myhelper.NUMBER));
-//            buffer.append(cid+ "   " + name + "   " + email + "   " + number + " \n");
-//        }
-//        return buffer.toString();
-//    }
 
     public int delete(String deleteName, Context context)
     {
@@ -104,6 +88,5 @@ public class DbAdapter {
         db.execSQL("UPDATE  "+TABLE_NAME+" SET name ='"+ updated.getName() + "', number ='" + updated.getNumber()+ "', email ='"+ updated.getEmail() + "'  WHERE name='" + friendToUpdate + "'");
 
     }
-
 
 }
