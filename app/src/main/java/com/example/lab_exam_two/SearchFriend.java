@@ -43,7 +43,6 @@ public class SearchFriend extends AppCompatActivity {
 
         helper = new DbAdapter(this);
         c = helper.getData();
-
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
