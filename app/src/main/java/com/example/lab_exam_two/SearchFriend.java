@@ -49,7 +49,6 @@ public class SearchFriend extends AppCompatActivity {
                 search();
             }
         });
-
     }
 
     public void search() {
