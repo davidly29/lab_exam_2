@@ -40,6 +40,7 @@ public class SearchFriend extends AppCompatActivity {
                 startActivity(new Intent(SearchFriend.this, MainActivity.class));
             }
         });
+
         helper = new DbAdapter(this);
         c = helper.getData();
 
