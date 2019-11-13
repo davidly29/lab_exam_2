@@ -15,7 +15,7 @@ public class DbAdapter {
     {
         static final String DATABASE_NAME = "myDatabase";
         static final String TABLE_NAME = "friends";
-        static final int DATABASE_Version = 3;
+        static final int DATABASE_Version = 5;
         static final String UID="_id";
         static final String EMAIL="email";
         static final String NAME = "name";

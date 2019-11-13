@@ -38,9 +38,9 @@ public class ExtraAdapter extends RecyclerView.Adapter<ExtraAdapter.Myclass> {
     @Override
     public void onBindViewHolder(@NonNull Myclass holder, final int position) {
         final RetriveParams params = retriveParams.get(position);
-        holder.textViewName.setText(params.getName());
-        holder.textViewNumber.setText(params.getNumber());
-        holder.textViewEmail.setText(params.getEmail());
+        holder.textViewName.setText("Name: " + params.getName());
+        holder.textViewNumber.setText("Number: " + params.getNumber());
+        holder.textViewEmail.setText("Email: " + params.getEmail());
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,14 +70,7 @@ public class ExtraAdapter extends RecyclerView.Adapter<ExtraAdapter.Myclass> {
                         notifyItemRemoved(position);
                         notifyItemRangeChanged(position, retriveParams.size());
                         notifyDataSetChanged();
-//                        PersonDBHelper dbHelper = new PersonDBHelper(mContext);
-//                        dbHelper.deletePersonRecord(person.getId(), mContext);
-//
-//                        mPeopleList.remove(position);
-//                        mRecyclerV.removeViewAt(position);
-//                        notifyItemRemoved(position);
-//                        notifyItemRangeChanged(position, mPeopleList.size());
-//                        notifyDataSetChanged();
+
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

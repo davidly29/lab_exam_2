@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Button button, buttonView, buttonSearchUser;
     DbAdapter helper;
     Cursor c;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,12 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addUser(v);
+                if(editTextName.getText().toString().trim().isEmpty() || editTextNumber.getText().toString().trim().isEmpty() || editTextEmail.getText().toString().trim().isEmpty()){
+                    Toast.makeText(MainActivity.this, "Please fill out all fields", Toast.LENGTH_LONG).show();
+                }else {
+                    addUser(v);
+                }
+
             }
         });
 
@@ -58,28 +64,29 @@ public class MainActivity extends AppCompatActivity {
 
     public void addUser(View view)
     {
-        String name = editTextName.getText().toString();
-        String email = editTextEmail.getText().toString();
-        String number = editTextNumber.getText().toString();
-            if(authUser(name, number, email) > 0){
-            Toast.makeText(this, "User already exists", Toast.LENGTH_LONG).show();
-            }else{
-                long id = helper.insertFriend(name, email, number);
-                if(id<=0)
+        String name = editTextName.getText().toString().trim();
+        String email = editTextEmail.getText().toString().trim();
+        String number = editTextNumber.getText().toString().trim();
+
+                if (authUser(name, number, email) > 0)
                 {
-                    Toast.makeText(this, "Error inserting data", Toast.LENGTH_LONG).show();
-                    editTextName.setText("");
-                    editTextNumber.setText("");
-                    editTextEmail.setText("");
+                Toast.makeText(this, "User already exists", Toast.LENGTH_LONG).show();
                 } else
-                {
-                    Toast.makeText(this, "Data inserted", Toast.LENGTH_LONG).show();
-                    editTextName.setText("");
-                    editTextNumber.setText("");
-                    editTextEmail.setText("");
+                    {
+                        long id = helper.insertFriend(name, email, number);
+                        if (id <= 0) {
+                            Toast.makeText(this, "Error inserting data", Toast.LENGTH_LONG).show();
+                            editTextName.setText("");
+                            editTextNumber.setText("");
+                            editTextEmail.setText("");
+                        } else
+                            {
+                                Toast.makeText(this, "Data inserted", Toast.LENGTH_LONG).show();
+                                editTextName.setText("");
+                                editTextNumber.setText("");
+                                editTextEmail.setText("");
                 }
             }
-
 
     }
 

@@ -5,6 +5,7 @@ import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -36,10 +37,8 @@ public class DisplayActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     String name, number, email;
-    EditText editTextRemove;
-    Button buttonDeleteUser;
     ArrayList<RetriveParams> data = new ArrayList<>();
-
+    ImageView imageView;
     DbAdapter helper;
 
     Cursor c;
@@ -58,9 +57,15 @@ public class DisplayActivity extends AppCompatActivity {
         recyclerView.setAdapter(adp);
 
         c=helper.getData();
+        imageView = (ImageView) findViewById(R.id.imageView);
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DisplayActivity.this, MainActivity.class));
+            }
+        });
             while (c.moveToNext()) {
-               // name = c.getString(1) + " " +  c.getString(2) + " " + c.getString(3);
                 name = c.getString(1);
                 number = c.getString(2);
                 email = c.getString(3);

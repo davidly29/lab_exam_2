@@ -5,11 +5,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class SearchFriend extends AppCompatActivity {
     Button buttonSearch;
     ArrayList<RetriveParams> data = new ArrayList<>();
     DbAdapter helper;
-
+    ImageView imageView;
     Cursor c;
 
     @Override
@@ -31,7 +33,13 @@ public class SearchFriend extends AppCompatActivity {
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextNumber = (EditText) findViewById(R.id.editTextNumber);
         buttonSearch = (Button) findViewById(R.id.buttonSearch);
-
+        imageView = (ImageView) findViewById(R.id.imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SearchFriend.this, MainActivity.class));
+            }
+        });
         helper = new DbAdapter(this);
         c = helper.getData();
 

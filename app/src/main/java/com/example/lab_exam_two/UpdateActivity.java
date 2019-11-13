@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class UpdateActivity extends AppCompatActivity {
     EditText editTextName, editTextNumber, editTextEmail;
     Button buttonUpdateFriend;
     DbAdapter helper;
+    ImageView imageView;
 
     private static String friendToUpdate = "";
 
@@ -25,6 +27,7 @@ public class UpdateActivity extends AppCompatActivity {
         editTextNumber = (EditText) findViewById(R.id.editTextNumber);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         buttonUpdateFriend = (Button) findViewById(R.id.buttonUpdateFriend);
+        imageView = (ImageView) findViewById(R.id.imageView);
         buttonUpdateFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +41,12 @@ public class UpdateActivity extends AppCompatActivity {
         editTextName.setText(params.getName());
         editTextNumber.setText(params.getNumber());
         editTextEmail.setText(params.getEmail());
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UpdateActivity.this, MainActivity.class));
+            }
+        });
     }
 
 
